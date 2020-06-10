@@ -149,14 +149,17 @@ int CmdSummary (
         table.set (row, 3, format ("@{1}", track.id), colorID);
       }
 
+      if (tags.length () > 15)
+          tags = tags.substr (0, 12) + "...";
+
       table.set (row, (ids ? 4 : 3), tags);
 
       if (show_annotation)
       {
         auto annotation = track.getAnnotation ();
 
-        if (annotation.length () > 15)
-          annotation = annotation.substr (0, 12) + "...";
+        if (annotation.length () > 80)
+          annotation = annotation.substr (0, 77) + "...";
 
         table.set (row, (ids ? 5 : 4), annotation);
       }
